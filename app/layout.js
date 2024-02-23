@@ -3,7 +3,7 @@ import "./globals.css";
 
 import {NavBar} from '../components'
 
-import { SelectedCourseProvider } from "../contexts/SelectedCourseContext";
+import { SelectedCourseProvider, SelectedNotesReviewProvider, SelectedModuleProvider} from "../contexts";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,8 +19,12 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="h-[100vh] bg-white ">
           <SelectedCourseProvider>
-            <NavBar />
-            {children}
+            <SelectedModuleProvider>
+              <SelectedNotesReviewProvider>
+                <NavBar />
+                {children}
+              </SelectedNotesReviewProvider>
+            </SelectedModuleProvider>
           </SelectedCourseProvider>
         </div>
       </body>
